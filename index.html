@@ -3,554 +3,979 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INTI - Ropa Artesanal de Alpaca</title>
-    <link rel="stylesheet" href="/pag1/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&display=swap">
+    <title>INTI - Baby Alpaca | Elegancia Artesanal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== VARIABLES ==================== */
+        :root {
+            /* Colores principales */
+            --black: #0F0F0F;
+            --gold: #C8A14F;
+            --ivory: #FAF6ED;
+            --terracotta: #9B5C33;
+            --moss: #4E5E3E;
+            
+            /* Colores secundarios */
+            --dark-gold: #A88A3F;
+            --light-gold: #D9BC76;
+            --dark-ivory: #E8E2D5;
+            --gray-900: #1A1A1A;
+            --gray-800: #2A2A2A;
+            --gray-700: #3A3A3A;
+            --gray-600: #4A4A4A;
+            --gray-500: #5A5A5A;
+            --gray-400: #6A6A6A;
+            --gray-300: #7A7A7A;
+            --gray-200: #8A8A8A;
+            --gray-100: #9A9A9A;
+            
+            /* Tipografía */
+            --font-title: 'Cinzel', serif;
+            --font-subtitle: 'Playfair Display', serif;
+            --font-accent: 'Great Vibes', cursive;
+            --font-body: 'Montserrat', sans-serif;
+            --font-alt: 'Lora', serif;
+            
+            /* Espaciado */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 3rem;
+            --spacing-xl: 5rem;
+            
+            /* Bordes y sombras */
+            --border-thin: 1px solid var(--gold);
+            --border-medium: 2px solid var(--gold);
+            --border-thick: 3px solid var(--gold);
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.2);
+            
+            /* Transiciones */
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        /* ==================== RESET Y ESTILOS BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--ivory);
+            background-color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8A14F' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition-medium);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+
+        /* ==================== UTILIDADES ==================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .section-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--spacing-lg);
+            color: var(--gray-100);
+            font-family: var(--font-alt);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .img-bordered {
+            border: var(--border-thin);
+            border-radius: 0;
+            position: relative;
+            transition: transform var(--transition-medium);
+        }
+
+        .img-bordered::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: -10px;
+            bottom: -10px;
+            border: var(--border-thin);
+            z-index: -1;
+            transition: all var(--transition-medium);
+        }
+
+        .img-bordered:hover {
+            transform: scale(1.02);
+        }
+
+        .img-bordered:hover::before {
+            top: 15px;
+            left: 15px;
+        }
+
+        .tagline {
+            font-family: var(--font-accent);
+            color: var(--gold);
+            font-size: 1.5rem;
+            text-align: center;
+            margin: var(--spacing-md) 0;
+        }
+
+        .inca-divider {
+            height: 30px;
+            width: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='20' viewBox='0 0 100 20' fill='none'%3E%3Cpath d='M0 10 L100 10' stroke='%23C8A14F' stroke-width='1' stroke-dasharray='1 3'/%3E%3Ccircle cx='50' cy='10' r='5' fill='%23C8A14F' opacity='0.7'/%3E%3Cpath d='M40 10 L30 5 L20 10 L30 15 Z' fill='%23C8A14F' opacity='0.5'/%3E%3Cpath d='M60 10 L70 5 L80 10 L70 15 Z' fill='%23C8A14F' opacity='0.5'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-position: center;
+            margin: var(--spacing-md) 0;
+            opacity: 0.6;
+        }
+
+        /* ==================== BOTONES ==================== */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2.5rem;
+            font-family: var(--font-title);
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: transparent;
+            color: var(--gold);
+            border: var(--border-thin);
+        }
+
+        .btn-primary::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--gold);
+            transition: all var(--transition-medium);
+            z-index: -1;
+        }
+
+        .btn-primary:hover {
+            color: var(--black);
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-secondary {
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--dark-gold);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ==================== NAVEGACIÓN ==================== */
+        .navbar {
+            background-color: rgba(15, 15, 15, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: var(--border-thin);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            margin-right: 0.75rem;
+            border-radius: 50%;
+            border: var(--border-thin);
+            padding: 3px;
+        }
+
+        .logo-text {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .nav-link {
+            color: var(--ivory);
+            margin-left: 2rem;
+            font-family: var(--font-title);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold);
+            transition: width var(--transition-medium);
+        }
+
+        .nav-link:hover {
+            color: var(--gold);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: var(--gold);
+            cursor: pointer;
+        }
+
+        .menu-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            min-height: 100vh;
+            background-image: url('https://source.unsplash.com/random/1920x1080/?alpaca,peru,mountains');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 5rem;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.9));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem 0;
+        }
+
+        .hero-text {
+            max-width: 600px;
+            color: var(--ivory);
+            padding: var(--spacing-lg);
+            border: var(--border-thin);
+            background-color: rgba(15, 15, 15, 0.7);
+            position: relative;
+        }
+
+        .hero-text::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px solid rgba(200, 161, 79, 0.3);
+            z-index: -1;
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            color: var(--gold);
+            line-height: 1.2;
+            letter-spacing: 2px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-lg);
+            font-family: var(--font-alt);
+            line-height: 1.8;
+        }
+
+        /* ==================== PRODUCTOS ==================== */
+        .productos {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--black);
+            position: relative;
+        }
+
+        .productos::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8A14F' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .productos-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .producto-card {
+            background-color: var(--gray-900);
+            overflow: hidden;
+            transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+            position: relative;
+            border: var(--border-thin);
+        }
+
+        .producto-card::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px solid rgba(200, 161, 79, 0.3);
+            z-index: -1;
+            transition: all var(--transition-medium);
+            opacity: 0;
+        }
+
+        .producto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .producto-card:hover::before {
+            opacity: 1;
+            top: 15px;
+            left: 15px;
+        }
+
+        .producto-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+
+        .producto-card:hover .producto-img {
+            transform: scale(1.05);
+        }
+
+        .producto-info {
+            padding: var(--spacing-md);
+        }
+
+        .producto-info h3 {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        .producto-info p {
+            color: var(--gray-100);
+            margin-bottom: var(--spacing-md);
+            font-size: 0.95rem;
+        }
+
+        .producto-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(200, 161, 79, 0.2);
+            padding-top: var(--spacing-sm);
+        }
+
+        .precio {
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: var(--gold);
+            font-family: var(--font-title);
+        }
+
+        /* ==================== NOSOTROS ==================== */
+        .nosotros {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--gray-900);
+            position: relative;
+        }
+
+        .nosotros::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to top, var(--black), transparent);
+            z-index: 0;
+        }
+
+        .nosotros-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .nosotros-texto {
+            display: flex;
+            flex-direction: column;
+            padding: var(--spacing-lg);
+            border: var(--border-thin);
+            background-color: rgba(15, 15, 15, 0.7);
+            position: relative;
+        }
+
+        .nosotros-texto::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: -10px;
+            bottom: -10px;
+            border: 1px solid rgba(200, 161, 79, 0.3);
+            z-index: -1;
+        }
+
+        .nosotros-texto h2 {
+            text-align: left;
+            padding-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+        }
+
+        .nosotros-texto h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .nosotros-texto p {
+            margin-bottom: var(--spacing-sm);
+            color: var(--gray-100);
+            font-family: var(--font-alt);
+            line-height: 1.8;
+        }
+
+        .nosotros-texto .btn {
+            align-self: flex-start;
+            margin-top: var(--spacing-md);
+        }
+
+        .nosotros-imagen {
+            position: relative;
+        }
+
+        .nosotros-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: var(--border-thin);
+        }
+
+        .nosotros-imagen::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: -15px;
+            bottom: -15px;
+            border: 1px solid rgba(200, 161, 79, 0.3);
+            z-index: -1;
+        }
+
+        /* ==================== TESTIMONIOS ==================== */
+        .testimonios {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--black);
+            position: relative;
+        }
+
+        .testimonios::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8A14F' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .testimonios-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonio-card {
+            background-color: var(--gray-900);
+            padding: var(--spacing-lg);
+            border: var(--border-thin);
+            position: relative;
+            transition: transform var(--transition-medium);
+        }
+
+        .testimonio-card::before {
+            content: """;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 5rem;
+            font-family: var(--font-subtitle);
+            color: rgba(200, 161, 79, 0.1);
+            line-height: 1;
+        }
+
+        .testimonio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonio-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .testimonio-img {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: var(--spacing-sm);
+            border: var(--border-thin);
+        }
+
+        .testimonio-header h3 {
+            font-family: var(--font-title);
+            font-weight: 600;
+            color: var(--gold);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .testimonio-header p {
+            color: var(--gray-300);
+            font-size: 0.875rem;
+            font-style: italic;
+        }
+
+        .testimonio-texto {
+            font-style: italic;
+            color: var(--gray-100);
+            margin-bottom: var(--spacing-md);
+            font-family: var(--font-alt);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonio-estrellas {
+            color: var(--gold);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background-color: var(--gray-900);
+            color: var(--gray-100);
+            padding: var(--spacing-xl) 0 var(--spacing-md);
+            border-top: var(--border-thin);
+            position: relative;
+        }
+
+        .footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8A14F' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-logo-img {
+            width: 3rem;
+            height: 3rem;
+            margin-right: var(--spacing-sm);
+            border-radius: 50%;
+            border: var(--border-thin);
+            padding: 3px;
+        }
+
+        .footer-logo h3 {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: var(--spacing-md);
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: var(--spacing-xs);
+        }
+
+        .footer-col h4::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .footer-links a {
+            color: var(--gray-100);
+            transition: color var(--transition-medium), transform var(--transition-medium);
+            display: inline-block;
+            font-family: var(--font-alt);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .footer-contacto li {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: var(--spacing-sm);
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .social-link {
+            color: var(--gold);
+            transition: color var(--transition-medium), transform var(--transition-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: var(--border-thin);
+            border-radius: 50%;
+        }
+
+        .social-link:hover {
+            color: var(--ivory);
+            transform: translateY(-3px);
+            border-color: var(--ivory);
+        }
+
+        .social-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(200, 161, 79, 0.2);
+            color: var(--gray-300);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-tagline {
+            text-align: center;
+            font-family: var(--font-accent);
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* ==================== MEDIA QUERIES ==================== */
+        @media (min-width: 640px) {
+            .productos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .testimonios-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 4rem;
+            }
+            
+            .nav-links {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .nosotros-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .productos-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .testimonios-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* ==================== ANIMACIONES ==================== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Animación para el sol inca */
+        .inca-sun {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .inca-sun-1 {
+            top: 10%;
+            right: 5%;
+            animation: pulse 8s infinite;
+        }
+
+        .inca-sun-2 {
+            bottom: 10%;
+            left: 5%;
+            animation: pulse 10s infinite;
+        }
+    </style>
 </head>
-<style>
-    /* Variables */
-:root {
-    --gold: #D4AF37;
-    --gold-light: #FFD700;
-    --gold-dark: #B8860B;
-    --black: #000000;
-    --gray-900: #111111;
-    --gray-800: #222222;
-    --gray-700: #333333;
-    --gray-600: #444444;
-    --gray-500: #666666;
-    --gray-400: #888888;
-    --gray-300: #aaaaaa;
-    --gray-200: #cccccc;
-    --gray-100: #eeeeee;
-    --white: #ffffff;
-    --font-serif: 'Playfair Display', serif;
-    --font-sans: 'Raleway', sans-serif;
-}
 
-/* Reset y estilos base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: var(--font-sans);
-    color: var(--gray-300);
-    background-color: var(--black);
-    line-height: 1.6;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-ul {
-    list-style: none;
-}
-
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-/* Utilidades */
-.reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.section-title {
-    font-family: var(--font-serif);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.section-description {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 3rem;
-    color: var(--gray-300);
-}
-
-.img-bordered {
-    border: 1px solid var(--gold);
-    border-radius: 0.5rem;
-}
-
-/* Botones */
-.btn {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    border-radius: 0.375rem;
-    font-weight: 500;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-primary {
-    background-color: var(--gold);
-    color: var(--black);
-}
-
-.btn-primary:hover {
-    background-color: var(--gold-dark);
-    transform: scale(1.05);
-}
-
-.btn-secondary {
-    background-color: var(--gold);
-    color: var(--black);
-}
-
-.btn-secondary:hover {
-    background-color: var(--gold-dark);
-}
-
-/* Navegación */
-.navbar {
-    background-color: var(--black);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 0.75rem 0;
-}
-
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo-img {
-    width: 40px;
-    height: 40px;
-    margin-right: 0.75rem;
-}
-
-.logo-text {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--gold);
-}
-
-.nav-links {
-    display: none;
-}
-
-.nav-link {
-    color: var(--gold);
-    margin-left: 1.5rem;
-    transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-    color: var(--gold-light);
-}
-
-.mobile-menu-btn {
-    background: none;
-    border: none;
-    color: var(--gold);
-    cursor: pointer;
-}
-
-.menu-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-
-/* Hero Section */
-.hero {
-    min-height: 100vh;
-    background-image: url('images/banner.png');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding-top: 5rem;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.hero-content {
-    position: relative;
-    z-index: 1;
-    padding: 2rem 0;
-}
-
-.hero-text {
-    max-width: 600px;
-    color: var(--white);
-}
-
-.hero-text h1 {
-    font-family: var(--font-serif);
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--gold);
-}
-
-.hero-text p {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-}
-
-/* Productos */
-.productos {
-    padding: 5rem 0;
-    background-color: var(--black);
-}
-
-.productos-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-.producto-card {
-    background-color: var(--gray-900);
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--gold);
-}
-
-.producto-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-}
-
-.producto-img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-.producto-info {
-    padding: 1.5rem;
-}
-
-.producto-info h3 {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: var(--gold);
-}
-
-.producto-info p {
-    color: var(--gray-300);
-    margin-bottom: 1rem;
-}
-
-.producto-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.precio {
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: var(--gold);
-}
-
-/* Nosotros */
-.nosotros {
-    padding: 5rem 0;
-    background-color: var(--gray-900);
-}
-
-.nosotros-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-}
-
-.nosotros-texto {
-    display: flex;
-    flex-direction: column;
-}
-
-.nosotros-texto h2 {
-    text-align: left;
-}
-
-.nosotros-texto p {
-    margin-bottom: 1rem;
-}
-
-.nosotros-texto .btn {
-    align-self: flex-start;
-    margin-top: 1rem;
-}
-
-.nosotros-imagen img {
-    width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Testimonios */
-.testimonios {
-    padding: 5rem 0;
-    background-color: var(--black);
-}
-
-.testimonios-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-.testimonio-card {
-    background-color: var(--gray-900);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--gold);
-}
-
-.testimonio-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.testimonio-img {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 1rem;
-}
-
-.testimonio-header h3 {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    color: var(--gold);
-}
-
-.testimonio-header p {
-    color: var(--gray-400);
-    font-size: 0.875rem;
-}
-
-.testimonio-texto {
-    font-style: italic;
-    color: var(--gray-300);
-    margin-bottom: 1rem;
-}
-
-.testimonio-estrellas {
-    color: var(--gold);
-}
-
-/* Footer */
-.footer {
-    background-color: var(--black);
-    color: var(--gray-300);
-    padding: 3rem 0 1.5rem;
-    border-top: 1px solid var(--gold);
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-.footer-logo {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.footer-logo-img {
-    width: 2.5rem;
-    height: 2.5rem;
-    margin-right: 0.75rem;
-}
-
-.footer-logo h3 {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--gold);
-}
-
-.footer-col h4 {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 1rem;
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-}
-
-.footer-links li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-links a {
-    color: var(--gray-300);
-    transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: var(--gold);
-}
-
-.footer-contacto li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.75rem;
-}
-
-.icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-right: 0.75rem;
-    color: var(--gold);
-}
-
-.social-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.social-link {
-    color: var(--gold);
-    transition: color 0.3s ease;
-}
-
-.social-link:hover {
-    color: var(--gold-light);
-}
-
-.social-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-
-.footer-copyright {
-    text-align: center;
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--gray-800);
-    color: var(--gray-400);
-}
-
-/* Media Queries */
-@media (min-width: 640px) {
-    .productos-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .testimonios-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 768px) {
-    .section-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-text h1 {
-        font-size: 3.5rem;
-    }
-    
-    .nav-links {
-        display: flex;
-    }
-    
-    .mobile-menu-btn {
-        display: none;
-    }
-    
-    .nosotros-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (min-width: 1024px) {
-    .productos-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .testimonios-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .footer-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-</style>
 <body>
+    <!-- SVG Decorativos -->
+    <svg class="inca-sun inca-sun-1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="20" fill="#C8A14F"/>
+        <path d="M50 0 L50 20 M50 80 L50 100 M0 50 L20 50 M80 50 L100 50 M14.6 14.6 L29.3 29.3 M70.7 70.7 L85.4 85.4 M14.6 85.4 L29.3 70.7 M70.7 29.3 L85.4 14.6" stroke="#C8A14F" stroke-width="3"/>
+    </svg>
+    
+    <svg class="inca-sun inca-sun-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="20" fill="#C8A14F"/>
+        <path d="M50 0 L50 20 M50 80 L50 100 M0 50 L20 50 M80 50 L100 50 M14.6 14.6 L29.3 29.3 M70.7 70.7 L85.4 85.4 M14.6 85.4 L29.3 70.7 M70.7 29.3 L85.4 14.6" stroke="#C8A14F" stroke-width="3"/>
+    </svg>
+
     <!-- Navegación -->
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">
-                <img src="images/logo.png" alt="INTI Baby Alpaca" class="logo-img">
-                <span class="logo-text">INTI Baby Alpaca</span>
+                <img src="/pag1/logo.jpeg" alt="INTI Baby Alpaca" class="logo-img">
+                <span class="logo-text">INTI</span>
             </a>
             <div class="nav-links">
                 <a href="#inicio" class="nav-link">Inicio</a>
-                <a href="#productos" class="nav-link">Productos</a>
+                <a href="#productos" class="nav-link">Colección</a>
                 <a href="#nosotros" class="nav-link">Nosotros</a>
                 <a href="#testimonios" class="nav-link">Testimonios</a>
             </div>
@@ -562,19 +987,22 @@ ul {
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- HERO SECTION -->
     <section id="inicio" class="hero">
         <div class="hero-overlay"></div>
         <div class="container hero-content reveal">
             <div class="hero-text">
                 <h1>Elegancia Natural de los Andes</h1>
                 <p>Descubre la suavidad y calidez de nuestra ropa artesanal de alpaca, tejida con tradición y respeto por la naturaleza.</p>
-                <a href="#productos" class="btn btn-primary">Ver Colección</a>
+                <a href="#productos" class="btn btn-primary">Explorar Colección</a>
             </div>
         </div>
     </section>
 
-    <!-- Productos -->
+    <div class="tagline reveal">Hecho con alma, tejido con historia.</div>
+    <div class="inca-divider"></div>
+
+    <!-- PRODUCTOS SECTION -->
     <section id="productos" class="productos">
         <div class="container">
             <h2 class="section-title reveal">Nuestra Colección</h2>
@@ -583,12 +1011,12 @@ ul {
             <div class="productos-grid">
                 <!-- Producto 1 -->
                 <div class="producto-card reveal">
-                    <img src="https://source.unsplash.com/random/600x400/?alpaca,sweater" alt="Suéter de Alpaca" class="producto-img">
+                    <img src="https://source.unsplash.com/random/600x400/?alpaca,sweater" alt="Suéter de Alpaca" class="producto-img" loading="lazy">
                     <div class="producto-info">
-                        <h3>Suéter Clásico</h3>
-                        <p>Suéter tejido a mano con lana de alpaca 100% natural.</p>
+                        <h3>Suéter Clásico Andino</h3>
+                        <p>Suéter tejido a mano con lana de alpaca 100% natural. Diseño atemporal con detalles inspirados en patrones incaicos.</p>
                         <div class="producto-footer">
-                            <span class="precio">$89.99</span>
+                            <span class="precio">$189.00</span>
                             <button class="btn btn-secondary">Ver Detalles</button>
                         </div>
                     </div>
@@ -596,12 +1024,12 @@ ul {
                 
                 <!-- Producto 2 -->
                 <div class="producto-card reveal">
-                    <img src="https://source.unsplash.com/random/600x400/?alpaca,scarf" alt="Bufanda de Alpaca" class="producto-img">
+                    <img src="https://source.unsplash.com/random/600x400/?alpaca,scarf" alt="Bufanda de Alpaca" class="producto-img" loading="lazy">
                     <div class="producto-info">
-                        <h3>Bufanda Andina</h3>
-                        <p>Bufanda tejida con patrones tradicionales andinos.</p>
+                        <h3>Bufanda Andina Premium</h3>
+                        <p>Bufanda tejida con patrones tradicionales andinos. Suave al tacto y perfecta para climas fríos.</p>
                         <div class="producto-footer">
-                            <span class="precio">$45.99</span>
+                            <span class="precio">$95.00</span>
                             <button class="btn btn-secondary">Ver Detalles</button>
                         </div>
                     </div>
@@ -609,12 +1037,12 @@ ul {
                 
                 <!-- Producto 3 -->
                 <div class="producto-card reveal">
-                    <img src="https://source.unsplash.com/random/600x400/?alpaca,hat" alt="Gorro de Alpaca" class="producto-img">
+                    <img src="https://source.unsplash.com/random/600x400/?alpaca,hat" alt="Gorro de Alpaca" class="producto-img" loading="lazy">
                     <div class="producto-info">
-                        <h3>Gorro Chullo</h3>
-                        <p>Gorro tradicional peruano con orejeras y diseños coloridos.</p>
+                        <h3>Gorro Chullo Artesanal</h3>
+                        <p>Gorro tradicional peruano con orejeras y diseños coloridos. Tejido a mano por artesanos de los Andes.</p>
                         <div class="producto-footer">
-                            <span class="precio">$34.99</span>
+                            <span class="precio">$75.00</span>
                             <button class="btn btn-secondary">Ver Detalles</button>
                         </div>
                     </div>
@@ -622,12 +1050,12 @@ ul {
                 
                 <!-- Producto 4 -->
                 <div class="producto-card reveal">
-                    <img src="https://source.unsplash.com/random/600x400/?alpaca,poncho" alt="Poncho de Alpaca" class="producto-img">
+                    <img src="https://source.unsplash.com/random/600x400/?alpaca,poncho" alt="Poncho de Alpaca" class="producto-img" loading="lazy">
                     <div class="producto-info">
-                        <h3>Poncho Elegante</h3>
-                        <p>Poncho versátil con diseño contemporáneo en tonos tierra.</p>
+                        <h3>Poncho Elegante Cusco</h3>
+                        <p>Poncho versátil con diseño contemporáneo en tonos tierra. Perfecto para ocasiones especiales y uso diario.</p>
                         <div class="producto-footer">
-                            <span class="precio">$129.99</span>
+                            <span class="precio">$229.00</span>
                             <button class="btn btn-secondary">Ver Detalles</button>
                         </div>
                     </div>
@@ -635,12 +1063,12 @@ ul {
                 
                 <!-- Producto 5 -->
                 <div class="producto-card reveal">
-                    <img src="https://source.unsplash.com/random/600x400/?alpaca,gloves" alt="Guantes de Alpaca" class="producto-img">
+                    <img src="https://source.unsplash.com/random/600x400/?alpaca,gloves" alt="Guantes de Alpaca" class="producto-img" loading="lazy">
                     <div class="producto-info">
-                        <h3>Guantes Artesanales</h3>
-                        <p>Guantes suaves y cálidos con detalles bordados a mano.</p>
+                        <h3>Guantes Artesanales Inca</h3>
+                        <p>Guantes suaves y cálidos con detalles bordados a mano. Diseño elegante y funcional para el invierno.</p>
                         <div class="producto-footer">
-                            <span class="precio">$29.99</span>
+                            <span class="precio">$65.00</span>
                             <button class="btn btn-secondary">Ver Detalles</button>
                         </div>
                     </div>
@@ -648,12 +1076,12 @@ ul {
                 
                 <!-- Producto 6 -->
                 <div class="producto-card reveal">
-                    <img src="https://source.unsplash.com/random/600x400/?alpaca,blanket" alt="Manta de Alpaca" class="producto-img">
+                    <img src="https://source.unsplash.com/random/600x400/?alpaca,blanket" alt="Manta de Alpaca" class="producto-img" loading="lazy">
                     <div class="producto-info">
-                        <h3>Manta Rústica</h3>
-                        <p>Manta tejida a mano, perfecta para decorar y abrigarse.</p>
+                        <h3>Manta Rústica Machu Picchu</h3>
+                        <p>Manta tejida a mano, perfecta para decorar y abrigarse. Inspirada en los paisajes de los Andes peruanos.</p>
                         <div class="producto-footer">
-                            <span class="precio">$149.99</span>
+                            <span class="precio">$249.00</span>
                             <button class="btn btn-secondary">Ver Detalles</button>
                         </div>
                     </div>
@@ -662,35 +1090,40 @@ ul {
         </div>
     </section>
 
-    <!-- Sobre Nosotros -->
+    <div class="inca-divider"></div>
+
+    <!-- NOSOTROS SECTION -->
     <section id="nosotros" class="nosotros">
         <div class="container">
             <div class="nosotros-grid">
                 <div class="nosotros-texto reveal">
-                    <h2 class="section-title">Sobre Nosotros</h2>
+                    <h2 class="section-title">Nuestra Historia</h2>
                     <p>En INTI Baby Alpaca, nos dedicamos a preservar las técnicas ancestrales de tejido andino mientras creamos prendas contemporáneas que destacan la belleza natural de la fibra de alpaca.</p>
                     <p>Trabajamos directamente con comunidades de artesanos en los Andes peruanos, asegurando prácticas éticas y sostenibles en toda nuestra cadena de producción.</p>
                     <p>Cada prenda cuenta una historia de tradición, artesanía y respeto por la naturaleza, valores que están en el corazón de nuestra marca.</p>
-                    <a href="#" class="btn btn-primary">Nuestra Historia</a>
+                    <a href="#" class="btn btn-primary">Descubrir Más</a>
                 </div>
                 <div class="nosotros-imagen reveal">
-                    <img src="https://source.unsplash.com/random/800x600/?peru,weaving" alt="Artesano tejiendo" class="img-bordered">
+                    <img src="https://source.unsplash.com/random/800x600/?peru,weaving" alt="Artesano tejiendo" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonios -->
+    <div class="tagline reveal">Cada hilo cuenta una historia ancestral.</div>
+    <div class="inca-divider"></div>
+
+    <!-- TESTIMONIOS SECTION -->
     <section id="testimonios" class="testimonios">
         <div class="container">
-            <h2 class="section-title reveal">Lo Que Dicen Nuestros Clientes</h2>
+            <h2 class="section-title reveal">Experiencias INTI</h2>
             <p class="section-description reveal">Descubre por qué nuestros clientes aman nuestras prendas de alpaca.</p>
             
             <div class="testimonios-grid">
                 <!-- Testimonio 1 -->
                 <div class="testimonio-card reveal">
                     <div class="testimonio-header">
-                        <img src="https://source.unsplash.com/random/100x100/?woman,portrait" alt="Cliente" class="testimonio-img">
+                        <img src="https://source.unsplash.com/random/100x100/?woman,portrait" alt="Cliente" class="testimonio-img" loading="lazy">
                         <div>
                             <h3>María González</h3>
                             <p>Madrid, España</p>
@@ -705,7 +1138,7 @@ ul {
                 <!-- Testimonio 2 -->
                 <div class="testimonio-card reveal">
                     <div class="testimonio-header">
-                        <img src="https://source.unsplash.com/random/100x100/?man,portrait" alt="Cliente" class="testimonio-img">
+                        <img src="https://source.unsplash.com/random/100x100/?man,portrait" alt="Cliente" class="testimonio-img" loading="lazy">
                         <div>
                             <h3>Carlos Mendoza</h3>
                             <p>Ciudad de México</p>
@@ -720,7 +1153,7 @@ ul {
                 <!-- Testimonio 3 -->
                 <div class="testimonio-card reveal">
                     <div class="testimonio-header">
-                        <img src="https://source.unsplash.com/random/100x100/?woman,blonde" alt="Cliente" class="testimonio-img">
+                        <img src="https://source.unsplash.com/random/100x100/?woman,blonde" alt="Cliente" class="testimonio-img" loading="lazy">
                         <div>
                             <h3>Sophie Laurent</h3>
                             <p>París, Francia</p>
@@ -735,17 +1168,21 @@ ul {
         </div>
     </section>
 
-    <!-- Footer -->
+    <div class="inca-divider"></div>
+
+    <!-- FOOTER SECTION -->
     <footer class="footer">
         <div class="container">
+            <div class="footer-tagline">Hecho con alma, tejido con historia.</div>
+            
             <div class="footer-grid">
                 <!-- Logo y descripción -->
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="images/logo.png" alt="INTI Baby Alpaca" class="footer-logo-img">
+                        <img src="/pag1/logo.jpeg" alt="INTI Baby Alpaca" class="footer-logo-img">
                         <h3>INTI Baby Alpaca</h3>
                     </div>
-                    <p>Prendas artesanales de alpaca con tradición andina y diseño contemporáneo.</p>
+                    <p>Prendas artesanales de alpaca con tradición andina y diseño contemporáneo. Cada pieza es única, como quien la lleva.</p>
                 </div>
                 
                 <!-- Enlaces rápidos -->
@@ -753,9 +1190,11 @@ ul {
                     <h4>Enlaces Rápidos</h4>
                     <ul class="footer-links">
                         <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#productos">Productos</a></li>
-                        <li><a href="#nosotros">Sobre Nosotros</a></li>
+                        <li><a href="#productos">Colección</a></li>
+                        <li><a href="#nosotros">Nuestra Historia</a></li>
                         <li><a href="#testimonios">Testimonios</a></li>
+                        <li><a href="#">Proceso Artesanal</a></li>
+                        <li><a href="#">Sostenibilidad</a></li>
                     </ul>
                 </div>
                 
@@ -774,7 +1213,7 @@ ul {
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            <span>info@intibaby.com</span>
+                            <span>contacto@intibaby.com</span>
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -821,94 +1260,124 @@ ul {
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-    // Animación de elementos al hacer scroll
-    const reveals = document.querySelectorAll('.reveal');
-    
-    function revealOnScroll() {
-        for (let i = 0; i < reveals.length; i++) {
-            const windowHeight = window.innerHeight;
-            const elementTop = reveals[i].getBoundingClientRect().top;
-            const elementVisible = 150;
+            // Animación de elementos al hacer scroll
+            const reveals = document.querySelectorAll('.reveal');
             
-            if (elementTop < windowHeight - elementVisible) {
-                reveals[i].classList.add('active');
-            } else {
-                reveals[i].classList.remove('active');
-            }
-        }
-    }
-    
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll(); // Activar en la carga inicial
-    
-    // Menú móvil
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', function() {
-            // Crear un menú móvil si no existe
-            if (!document.querySelector('.mobile-menu')) {
-                const mobileMenu = document.createElement('div');
-                mobileMenu.className = 'mobile-menu';
-                mobileMenu.style.position = 'fixed';
-                mobileMenu.style.top = '60px';
-                mobileMenu.style.left = '0';
-                mobileMenu.style.width = '100%';
-                mobileMenu.style.backgroundColor = 'var(--black)';
-                mobileMenu.style.padding = '1rem';
-                mobileMenu.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-                mobileMenu.style.zIndex = '999';
-                mobileMenu.style.display = 'none';
-                
-                // Clonar los enlaces de navegación
-                const links = navLinks.querySelectorAll('a');
-                links.forEach(link => {
-                    const newLink = link.cloneNode(true);
-                    newLink.style.display = 'block';
-                    newLink.style.padding = '0.75rem 1rem';
-                    newLink.style.borderBottom = '1px solid var(--gray-800)';
-                    mobileMenu.appendChild(newLink);
+            function revealOnScroll() {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 150;
                     
-                    // Cerrar menú al hacer clic en un enlace
-                    newLink.addEventListener('click', function() {
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            }
+            
+            window.addEventListener('scroll', revealOnScroll);
+            // Activar en la carga inicial
+            setTimeout(revealOnScroll, 300);
+            
+            // Menú móvil
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    // Crear un menú móvil si no existe
+                    if (!document.querySelector('.mobile-menu')) {
+                        const mobileMenu = document.createElement('div');
+                        mobileMenu.className = 'mobile-menu';
+                        mobileMenu.style.position = 'fixed';
+                        mobileMenu.style.top = '70px';
+                        mobileMenu.style.left = '0';
+                        mobileMenu.style.width = '100%';
+                        mobileMenu.style.backgroundColor = '#0F0F0F';
+                        mobileMenu.style.padding = '1.5rem';
+                        mobileMenu.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+                        mobileMenu.style.zIndex = '999';
                         mobileMenu.style.display = 'none';
-                    });
+                        mobileMenu.style.borderTop = '1px solid #C8A14F';
+                        mobileMenu.style.borderBottom = '1px solid #C8A14F';
+                        
+                        // Clonar los enlaces de navegación
+                        const links = navLinks.querySelectorAll('a');
+                        links.forEach(link => {
+                            const newLink = link.cloneNode(true);
+                            newLink.style.display = 'block';
+                            newLink.style.padding = '1rem 1.5rem';
+                            newLink.style.margin = '0.5rem 0';
+                            newLink.style.borderBottom = '1px solid rgba(200, 161, 79, 0.2)';
+                            newLink.style.fontFamily = 'Cinzel, serif';
+                            newLink.style.fontSize = '1.1rem';
+                            newLink.style.letterSpacing = '1px';
+                            newLink.style.textAlign = 'center';
+                            mobileMenu.appendChild(newLink);
+                            
+                            // Cerrar menú al hacer clic en un enlace
+                            newLink.addEventListener('click', function() {
+                                mobileMenu.style.display = 'none';
+                            });
+                        });
+                        
+                        document.body.appendChild(mobileMenu);
+                    }
+                    
+                    // Mostrar u ocultar el menú móvil
+                    const mobileMenu = document.querySelector('.mobile-menu');
+                    if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+                        mobileMenu.style.display = 'block';
+                        // Animación de aparición
+                        mobileMenu.style.animation = 'fadeIn 0.3s ease forwards';
+                    } else {
+                        mobileMenu.style.display = 'none';
+                    }
                 });
-                
-                document.body.appendChild(mobileMenu);
             }
             
-            // Mostrar u ocultar el menú móvil
-            const mobileMenu = document.querySelector('.mobile-menu');
-            if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
-                mobileMenu.style.display = 'block';
+            // Smooth scroll para enlaces de navegación
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Lazy loading de imágenes
+            if ('loading' in HTMLImageElement.prototype) {
+                const images = document.querySelectorAll('img[loading="lazy"]');
+                images.forEach(img => {
+                    img.src = img.src;
+                });
             } else {
-                mobileMenu.style.display = 'none';
+                // Fallback para navegadores que no soportan lazy loading
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+                document.body.appendChild(script);
             }
-        });
-    }
-    
-    // Smooth scroll para enlaces de navegación
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
+            // Efecto parallax sutil en hero
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    hero.style.backgroundPosition = `center ${scrollPosition * 0.4}px`;
+                }
+            });
         });
-    });
-});
     </script>
 </body>
 </html>
